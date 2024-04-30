@@ -5,14 +5,14 @@ using Azure.AI.OpenAI;
 using Azure.Core.Pipeline;
 using Microsoft.SemanticKernel;
 
-namespace Examples;
+namespace ChatCompletion;
 
 public sealed class OpenAI_CustomAzureOpenAIClient(ITestOutputHelper output) : BaseTest(output)
 {
     [Fact]
     public async Task RunAsync()
     {
-        this.WriteLine("======== Using a custom OpenAI client ========");
+        Console.WriteLine("======== Using a custom OpenAI client ========");
 
         string endpoint = TestConfiguration.AzureOpenAI.Endpoint;
         string deploymentName = TestConfiguration.AzureOpenAI.ChatDeploymentName;
@@ -20,7 +20,7 @@ public sealed class OpenAI_CustomAzureOpenAIClient(ITestOutputHelper output) : B
 
         if (endpoint is null || deploymentName is null || apiKey is null)
         {
-            this.WriteLine("Azure OpenAI credentials not found. Skipping example.");
+            Console.WriteLine("Azure OpenAI credentials not found. Skipping example.");
             return;
         }
 
@@ -49,7 +49,7 @@ public sealed class OpenAI_CustomAzureOpenAIClient(ITestOutputHelper output) : B
             kernel.Plugins["FunPlugin"]["Excuses"],
             new() { ["input"] = "I have no homework" }
         );
-        this.WriteLine(result.GetValue<string>());
+        Console.WriteLine(result.GetValue<string>());
 
         httpClient.Dispose();
     }

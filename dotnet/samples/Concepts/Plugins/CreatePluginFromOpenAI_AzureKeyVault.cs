@@ -9,7 +9,7 @@ using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Plugins.OpenApi;
 using Resources;
 
-namespace Examples;
+namespace Plugins;
 
 public class CreatePluginFromOpenAI_AzureKeyVault(ITestOutputHelper output) : BaseTest(output)
 {
@@ -95,7 +95,7 @@ public class CreatePluginFromOpenAI_AzureKeyVault(ITestOutputHelper output) : Ba
         Console.WriteLine("SetSecret function result: {0}", result?.Content?.ToString());
     }
 
-    private static async Task GetSecretFromAzureKeyVaultWithRetryAsync(Kernel kernel, KernelPlugin plugin)
+    private async Task GetSecretFromAzureKeyVaultWithRetryAsync(Kernel kernel, KernelPlugin plugin)
     {
         // Add arguments for required parameters, arguments for optional ones can be skipped.
         var arguments = new KernelArguments

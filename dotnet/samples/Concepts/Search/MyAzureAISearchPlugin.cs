@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Embeddings;
 
-namespace Examples;
+namespace Search;
 
 public class AzureAISearchPlugin(ITestOutputHelper output) : BaseTest(output)
 {
@@ -50,7 +50,7 @@ public class AzureAISearchPlugin(ITestOutputHelper output) : BaseTest(output)
         var result1 = await kernel.InvokePromptAsync(
             "{{search 'David' collection='index-1'}} Who is David?");
 
-        WriteLine(result1);
+        Console.WriteLine(result1);
 
         // Query with index name and search fields.
         // Search fields are optional. Since one index may contain multiple searchable fields,
@@ -62,7 +62,7 @@ public class AzureAISearchPlugin(ITestOutputHelper output) : BaseTest(output)
             "{{search 'Story' collection='index-2' searchFields=$searchFields}} Who is Elara?",
             arguments);
 
-        WriteLine(result2);
+        Console.WriteLine(result2);
     }
 
     #region Index Schema
@@ -161,7 +161,7 @@ public class AzureAISearchPlugin(ITestOutputHelper output) : BaseTest(output)
     /// </summary>
     private sealed class MyAzureAISearchPlugin(
         ITextEmbeddingGenerationService textEmbeddingGenerationService,
-        Examples.AzureAISearchPlugin.IAzureAISearchService searchService)
+        AzureAISearchPlugin.IAzureAISearchService searchService)
     {
         private readonly ITextEmbeddingGenerationService _textEmbeddingGenerationService = textEmbeddingGenerationService;
         private readonly IAzureAISearchService _searchService = searchService;

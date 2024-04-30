@@ -3,7 +3,7 @@
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Plugins.OpenApi;
 
-namespace Examples;
+namespace Plugins;
 
 public class OpenAIPlugins(ITestOutputHelper output) : BaseTest(output)
 {
@@ -29,7 +29,7 @@ public class OpenAIPlugins(ITestOutputHelper output) : BaseTest(output)
 
         var result = functionResult.GetValue<RestApiOperationResponse>();
 
-        WriteLine($"Function execution result: {result?.Content}");
+        Console.WriteLine($"Function execution result: {result?.Content}");
     }
 
     [Fact]
@@ -52,6 +52,6 @@ public class OpenAIPlugins(ITestOutputHelper output) : BaseTest(output)
 
         var result = functionResult.GetValue<RestApiOperationResponse>();
 
-        WriteLine($"Function execution result: {result?.Content}");
+        Console.WriteLine($"Function execution result: {result?.Content}");
     }
 }

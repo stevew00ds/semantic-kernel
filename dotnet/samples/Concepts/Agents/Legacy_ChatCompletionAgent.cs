@@ -6,7 +6,7 @@ using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Microsoft.SemanticKernel.Experimental.Agents;
 
-namespace Examples;
+namespace Agents;
 
 public class Legacy_ChatCompletionAgent(ITestOutputHelper output) : BaseTest(output)
 {
@@ -97,7 +97,7 @@ public class Legacy_ChatCompletionAgent(ITestOutputHelper output) : BaseTest(out
 
     private string PrintPrompt(string prompt)
     {
-        this.WriteLine($"Prompt: {prompt}");
+        Console.WriteLine($"Prompt: {prompt}");
 
         return prompt;
     }
@@ -106,12 +106,12 @@ public class Legacy_ChatCompletionAgent(ITestOutputHelper output) : BaseTest(out
     {
         foreach (var message in messages)
         {
-            this.WriteLine($"------------------------------- {message.Role} ------------------------------");
-            this.WriteLine(message.Content);
-            this.WriteLine();
+            Console.WriteLine($"------------------------------- {message.Role} ------------------------------");
+            Console.WriteLine(message.Content);
+            Console.WriteLine();
         }
 
-        this.WriteLine();
+        Console.WriteLine();
     }
 
     private sealed class TurnBasedChat(IEnumerable<ChatCompletionAgent> agents, Func<ChatHistory, IEnumerable<ChatMessageContent>, int, bool> exitCondition)

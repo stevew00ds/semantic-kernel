@@ -3,9 +3,8 @@
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Microsoft.SemanticKernel.Plugins.Core;
-using Plugins;
 
-namespace Examples;
+namespace Plugins;
 
 public class DescribeAllPluginsAndFunctions(ITestOutputHelper output) : BaseTest(output)
 {
@@ -45,10 +44,10 @@ public class DescribeAllPluginsAndFunctions(ITestOutputHelper output) : BaseTest
 
         var functions = kernel.Plugins.GetFunctionsMetadata();
 
-        WriteLine("**********************************************");
-        WriteLine("****** Registered plugins and functions ******");
-        WriteLine("**********************************************");
-        WriteLine();
+        Console.WriteLine("**********************************************");
+        Console.WriteLine("****** Registered plugins and functions ******");
+        Console.WriteLine("**********************************************");
+        Console.WriteLine();
 
         foreach (KernelFunctionMetadata func in functions)
         {
@@ -60,20 +59,20 @@ public class DescribeAllPluginsAndFunctions(ITestOutputHelper output) : BaseTest
 
     private void PrintFunction(KernelFunctionMetadata func)
     {
-        WriteLine($"Plugin: {func.PluginName}");
-        WriteLine($"   {func.Name}: {func.Description}");
+        Console.WriteLine($"Plugin: {func.PluginName}");
+        Console.WriteLine($"   {func.Name}: {func.Description}");
 
         if (func.Parameters.Count > 0)
         {
-            WriteLine("      Params:");
+            Console.WriteLine("      Params:");
             foreach (var p in func.Parameters)
             {
-                WriteLine($"      - {p.Name}: {p.Description}");
-                WriteLine($"        default: '{p.DefaultValue}'");
+                Console.WriteLine($"      - {p.Name}: {p.Description}");
+                Console.WriteLine($"        default: '{p.DefaultValue}'");
             }
         }
 
-        WriteLine();
+        Console.WriteLine();
     }
 }
 

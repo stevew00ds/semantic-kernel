@@ -3,7 +3,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.SemanticKernel;
 
-namespace Examples;
+namespace Plugins;
 
 /// <summary>
 /// This example shows how to create a mutable <see cref="KernelPlugin"/>.
@@ -21,7 +21,7 @@ public class CustomMutablePlugin(ITestOutputHelper output) : BaseTest(output)
 
         var result = await kernel.InvokeAsync(kernel.Plugins["Plugin"]["Function"]);
 
-        WriteLine($"Result: {result}");
+        Console.WriteLine($"Result: {result}");
     }
 
     /// <summary>

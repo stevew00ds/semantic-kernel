@@ -4,7 +4,7 @@ using System.ComponentModel;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Planning;
 
-namespace Examples;
+namespace RAG;
 
 public class WithFunctionCallingStepwisePlanner(ITestOutputHelper output) : BaseTest(output)
 {
@@ -31,7 +31,7 @@ public class WithFunctionCallingStepwisePlanner(ITestOutputHelper output) : Base
         foreach (var question in questions)
         {
             FunctionCallingStepwisePlannerResult result = await planner.ExecuteAsync(kernel, question);
-            WriteLine($"Q: {question}\nA: {result.FinalAnswer}");
+            Console.WriteLine($"Q: {question}\nA: {result.FinalAnswer}");
 
             // You can uncomment the line below to see the planner's process for completing the request.
             // Console.WriteLine($"Chat history:\n{System.Text.Json.JsonSerializer.Serialize(result.ChatHistory)}");

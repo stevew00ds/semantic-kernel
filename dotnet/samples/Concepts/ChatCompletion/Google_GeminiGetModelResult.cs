@@ -3,7 +3,7 @@
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Connectors.Google;
 
-namespace Examples;
+namespace ChatCompletion;
 
 /// <summary>
 /// Represents an example class for Gemini Embedding Generation with volatile memory store.
@@ -13,7 +13,7 @@ public sealed class Google_GeminiGetModelResult(ITestOutputHelper output) : Base
     [Fact]
     public async Task GetTokenUsageMetadataAsync()
     {
-        WriteLine("======== Inline Function Definition + Invocation ========");
+        Console.WriteLine("======== Inline Function Definition + Invocation ========");
 
         // Create kernel
         Kernel kernel = Kernel.CreateBuilder()
@@ -54,7 +54,7 @@ public sealed class Google_GeminiGetModelResult(ITestOutputHelper output) : Base
 
         // Display results
         var geminiMetadata = result.Metadata as GeminiMetadata;
-        WriteLine(result.GetValue<string>());
-        WriteLine(geminiMetadata?.AsJson());
+        Console.WriteLine(result.GetValue<string>());
+        Console.WriteLine(geminiMetadata?.AsJson());
     }
 }

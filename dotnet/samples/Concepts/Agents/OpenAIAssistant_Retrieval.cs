@@ -6,7 +6,8 @@ using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Resources;
 
-namespace Examples;
+namespace Agents;
+
 /// <summary>
 /// Demonstrate using retrieval on <see cref="OpenAIAssistantAgent"/> .
 /// </summary>
@@ -27,12 +28,12 @@ public class OpenAIAssistant_Retrieval(ITestOutputHelper output) : BaseTest(outp
                 new BinaryContent(() => Task.FromResult(EmbeddedResource.ReadStream("travelinfo.txt")!)),
                 new OpenAIFileUploadExecutionSettings("travelinfo.txt", OpenAIFilePurpose.Assistants));
 
-        WriteLine(this.ApiKey);
+        Console.WriteLine(this.ApiKey);
 
         // Define the agent
         OpenAIAssistantAgent agent =
             await OpenAIAssistantAgent.CreateAsync(
-                kernel: this.CreateEmptyKernel(),
+                kernel: new(),
                 config: new(this.ApiKey, this.Endpoint),
                 new()
                 {
@@ -61,11 +62,11 @@ public class OpenAIAssistant_Retrieval(ITestOutputHelper output) : BaseTest(outp
         {
             chat.AddChatMessage(new ChatMessageContent(AuthorRole.User, input));
 
-            this.WriteLine($"# {AuthorRole.User}: '{input}'");
+            Console.WriteLine($"# {AuthorRole.User}: '{input}'");
 
             await foreach (var content in chat.InvokeAsync(agent))
             {
-                this.WriteLine($"# {content.Role} - {content.AuthorName ?? "*"}: '{content.Content}'");
+                Console.WriteLine($"# {content.Role} - {content.AuthorName ?? "*"}: '{content.Content}'");
             }
         }
     }

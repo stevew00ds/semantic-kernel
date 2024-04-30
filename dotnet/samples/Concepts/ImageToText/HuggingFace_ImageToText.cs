@@ -5,7 +5,7 @@ using Microsoft.SemanticKernel.Connectors.HuggingFace;
 using Microsoft.SemanticKernel.ImageToText;
 using Resources;
 
-namespace Examples;
+namespace ImageToText;
 
 /// <summary>
 /// Represents a class that demonstrates image-to-text functionality.
@@ -44,6 +44,6 @@ public sealed class HuggingFace_ImageToText(ITestOutputHelper output) : BaseTest
         var textContent = await imageToText.GetTextContentAsync(imageContent, executionSettings);
 
         // Output image description
-        this.WriteLine(textContent.Text);
+        Console.WriteLine(textContent.Text);
     }
 }
